@@ -1,0 +1,27 @@
+﻿@model IPublishedContent
+@using System.Activities.Statements
+@using Umbraco.Web
+
+@{
+
+    var UmbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+}
+<div>
+
+    <a href="@Model.Url">@Model.Name</a>
+    @{
+        if (Model.GetProperty("Image").HasValue)
+        {
+            <img src="@UmbracoHelper.TypedMedia(Model.GetProperty("Image").Value.ToString()).Url?w=300&h=300&rotate=120">
+        }
+        else
+        {<text>
+        'No image avialable'
+        </text>
+        }
+
+    }
+
+
+</div>
+

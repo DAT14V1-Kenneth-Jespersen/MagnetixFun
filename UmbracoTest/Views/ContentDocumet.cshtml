@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+    Layout = null;
+}
+@*
+    This snippet lists the items from a Multinode tree picker, using the pickers default settings.
+    Content Values stored as xml.
+
+    To get it working with any site's data structure, set the selection equal to the property which has the
+    multinode treepicker (so: replace "PropertyWithPicker" with the alias of your property).
+*@
+@{
+
+    var selection2 = Model.Content.GetProperty("NodePickerTest").Value.ToString().Split(',');
+    var dataItems = Umbraco.TypedContent(selection2);
+
+}
+
+
+<ul>
+    @foreach (var item in dataItems)
+    {
+        <li>
+            @Html.Partial("_NodePickerTest", item)
+        </li>
+    }
+</ul>
